@@ -41,9 +41,8 @@
     </div>
 </template>
 <script>
-import { defineComponent } from 'vue';
 import { TimelineLite } from 'gsap';
-export default defineComponent({
+export default {
     name: 'Contact',
     data() {
         return {};
@@ -143,5 +142,5 @@ export default defineComponent({
     unmounted() {
         this.appearHeadTitle.kill();
     },
-});
+};
 </script>

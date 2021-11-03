@@ -8,9 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min'
 import 'fullpage.js/vendors/scrolloverflow'
 import VueFullPage from 'vue-fullpage.js'
-// import * as bootstrap from 'bootstrap'
-// import './assets/TweenLite.min';
-// import './assets/SplitText.min'
+
 createApp(App).use(store).use(router).use(VueFullPage).mount('#app')
 // 设置 rem 函数
 function setRem () {

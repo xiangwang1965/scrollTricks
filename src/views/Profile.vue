@@ -74,9 +74,8 @@
     </div>
 </template>
 <script>
-import { defineComponent } from 'vue';
 import { TimelineLite, Back, Elastic, Expo } from 'gsap';
-export default defineComponent({
+export default {
     name: 'Profile',
     data() {
         return {};
@@ -98,5 +97,5 @@ export default defineComponent({
         //     type: 'lines',
         // });
     },
-});
+};
 </script>

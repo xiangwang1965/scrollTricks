@@ -40,8 +40,7 @@
 }
 </style>
 <script>
-import { defineComponent } from 'vue';
-export default defineComponent({
+export default {
     name: 'Work',
     data() {
         return {};
@@ -71,5 +70,5 @@ export default defineComponent({
             //     },
         });
     },
-});
+};
 </script>

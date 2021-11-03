@@ -37,9 +37,8 @@
 }
 </style>
 <script>
-import { defineComponent } from 'vue';
 import { TimelineLite } from 'gsap';
-export default defineComponent({
+export default {
     name: 'Nav',
     data() {
         return {
@@ -234,5 +233,5 @@ export default defineComponent({
         // window.removeEventListener('resize', this.checkDevice);
         window.removeEventListener('scroll', this.scrollListen);
     },
-});
+};
 </script>
