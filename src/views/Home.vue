@@ -1,18 +1,34 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <full-page ref="fullpage" :options="options" id="fullpage">
+        <VueNav></VueNav>
+        <Profile> </Profile>
+        <Work></Work>
+        <Contact></Contact>
+    </full-page>
 </template>
-
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import VueNav from './Vuenav.vue';
+import Profile from './Profile.vue';
+import Work from './Work.vue';
+import Contact from './Contact.vue';
 
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
+    name: 'Main',
+    components: {
+        VueNav,
+        Profile,
+        Work,
+        Contact,
+    },
+    data() {
+        return {
+            options: {
+                licenseKey: 'YOUR_KEY_HEERE',
+                menu: '#menu',
+                anchors: ['page1', 'page2', 'page3'],
+                sectionsColor: ['#41b883', '#ff5f45', '#0798ec'],
+            },
+        };
+    },
+};
 </script>
