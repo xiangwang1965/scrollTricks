@@ -1,15 +1,27 @@
-import { createApp } from 'vue'
+import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import './assets/css/style.css'
-import 'jquery/dist/jquery'
+
+import $ from 'jquery'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min'
+import './assets/css/style.css'
 import 'fullpage.js/vendors/scrolloverflow'
-import VueFullPage from 'vue-fullpage.js'
+import VueFullPage from 'vue-fullpage'
+import './assets/js/greensock-js/src/minified/TweenMax.min';
+import './assets/js/greensock-js/src/minified/plugins/MorphSVGPlugin.min.js';
+import './assets/js/greensock-js/src/minified/plugins/SplitText.min'
+import './assets/js/greensock-js/src/minified/jquery.gsap.min';
 
-createApp(App).use(store).use(router).use(VueFullPage).mount('#app')
+Vue.config.productionTip = false
+Vue.use(VueFullPage);
+new Vue({
+    router,
+    store,
+    render: h => h(App)
+}).$mount('#app')
+
 // 设置 rem 函数
 function setRem () {
     //  PC端

@@ -7,18 +7,55 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active mx-4" target-scroll="profile">
-                        <a class="nav-link px-2">Profile</a>
-                    </li>
-                    <li class="nav-item mx-4" target-scroll="work">
-                        <a class="nav-link px-2">Work</a>
-                    </li>
-                    <li class="nav-item mx-4" target-scroll="contact">
-                        <a class="nav-link px-2">Contact</a>
+                    <li class="nav-item mx-4" :class="{ active: item.active }" v-for="item in tabList" @click="go(`${item.name}`)">
+                        <a class="nav-link px-2">{{ item.name }}</a>
                     </li>
                 </ul>
             </div>
         </nav>
+        <div class="transition">
+            <div class="transition__overlay">
+                <div class="bounce_top">
+                    <svg
+                        version="1.1"
+                        id="shapeContainer"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        x="0px"
+                        y="0px"
+                        preserveAspectRatio="none"
+                        height="234px"
+                        viewBox="0 0 1170 234"
+                        xml:space="preserve"
+                        style="overflow: visible"
+                    >
+                        <path id="initalShape" d="M1170,234H0l0,0C0,234,200,0,585,0S1170,234,1170,234L1170,234z" class="transitionPath"></path>
+                    </svg>
+                    <svg
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        x="0px"
+                        y="0px"
+                        preserveAspectRatio="none"
+                        height="234px"
+                        viewBox="0 0 1170 234"
+                        xml:space="preserve"
+                        style="overflow: visible; display: none"
+                    >
+                        <path id="finalShape" d="M1170,234H0V0c0,0,200,0,585,0s585,0,585,0V234z" class="transitionPath"></path>
+                    </svg>
+                </div>
+                <div class="bounce_bottom">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 390" preserveAspectRatio="none" id="svgA">
+                        <path d="M1200,260S1017.2,390,600,390,0,260,0,260V0H1200Z" class="transitionPath"></path>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 260" preserveAspectRatio="none" id="svgB" style="display: none">
+                        <path d="M1200,260S1017.2,130,600,130,0,260,0,260V0H1200Z" class="transitionPath"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
     </transition>
 </template>
 <style>
@@ -45,10 +82,31 @@ export default {
             isMenuOpen: !1,
             scrollPostion: 0,
             tl: null,
+            tabList: [
+                {
+                    name: 'Profile',
+                    active: false,
+                },
+                {
+                    name: 'Work',
+                    active: false,
+                },
+                {
+                    name: 'Contact',
+                    active: false,
+                },
+            ],
         };
     },
     watch: {
-        $route: function () {
+        $route(n, o) {
+            this.tabList.forEach((item) => {
+                if (item.name === n.name) {
+                    item.active = true;
+                } else {
+                    item.active = false;
+                }
+            });
             // if (this.isMenuOpen) {
             //     (this.isMenuOpen = !1),
             //         document.querySelector('.navbar').classList.remove('isOpen'),
@@ -72,10 +130,20 @@ export default {
         this.tl.set('.rel-nav', {
             opacity: 1,
         });
+        this.tabList.forEach((item) => {
+            if (item.name === this.$route.name) {
+                item.active = true;
+            } else {
+                item.active = false;
+            }
+        });
         // window.addEventListener('resize', this.checkDevice);
         // window.addEventListener('scroll', this.scrollListen);
     },
     methods: {
+        go(name) {
+            this.$router.push({ name });
+        },
         toggleMenu: function () {
             const e = this;
             if (!this.tl.isActive())

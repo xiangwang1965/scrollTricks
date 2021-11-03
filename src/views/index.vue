@@ -1,7 +1,7 @@
 <template>
     <div id="index"></div>
 </template>
-<style>
+<style scoped>
 .ball {
     width: 100px;
     height: 100px;
@@ -142,7 +142,7 @@ export default {
             if (this.rafId) {
                 cancelAnimationFrame(this.rafId);
             }
-            this.$router.push({ name: 'Home' });
+            this.$router.push({ name: 'Profile' });
         },
     },
 };
