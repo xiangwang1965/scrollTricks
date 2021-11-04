@@ -1,5 +1,5 @@
 <template>
-    <transition name="slide-down">
+    <div>
         <nav class="navbar fixed-top navbar-expand-lg navbar-light rel-nav">
             <a class="navbar-brand navbar-brand1" href="index.html">logo</a>
             <button class="navbar-toggler" type="button">
@@ -56,9 +56,9 @@
                 </div>
             </div>
         </div>
-    </transition>
+    </div>
 </template>
-<style>
+<style scoped>
 .slide-down-enter-active,
 .slide-down-leave-active {
     transition: all 500ms;
@@ -71,6 +71,61 @@
 .slide-down-leave-active {
     opacity: 0;
     transform: translate3d(0, -100%, 0);
+}
+.transition {
+    bottom: 0;
+    height: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+}
+
+.transition__overlay {
+    background: #13dead;
+    height: 100%;
+    position: relative;
+    width: 100%;
+}
+
+.transition .bounce_top {
+    bottom: 90%;
+    display: block;
+    height: 0;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 101%;
+}
+
+.transition .transitionPath {
+    fill: #13dead;
+}
+
+.transition #shapeContainer {
+    display: block;
+    overflow: visible;
+    width: 100%;
+}
+
+.transition .bounce_bottom {
+    display: block;
+    height: 0;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 90%;
+    width: 101%;
+}
+
+.transition #svgA {
+    display: block;
+    overflow: visible;
+    width: 100%;
+}
+
+.transition #svgB {
+    display: none;
 }
 </style>
 <script>

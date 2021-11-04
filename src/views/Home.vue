@@ -20,64 +20,57 @@ export default {
         Contact,
     },
     data() {
-        return {
-            options: {
-                licenseKey: 'YOUR_KEY_HEERE',
-                menu: '#menu',
-                anchors: ['page1', 'page2', 'page3'],
-                sectionsColor: ['#41b883', '#ff5f45', '#0798ec'],
-            },
-        };
+        return {};
     },
-    beforeRouteEnter(to, from, next) {
-        next();
-        TweenMax.set('#initalShape', {
-            morphSVG: '#initalShape',
-        })
-            .set('.transition', {
-                bottom: 'unset',
-                top: 0,
-            })
-            .set('.bounce_bottom', {
-                height: 'auto',
-                overflow: 'hidden',
-            })
-            .to('.transition', {
-                height: '0vh',
-                duration: 1,
-                ease: 'power3.out',
-            })
-            .to(
-                '#svgA path',
-                {
-                    duration: 0.5,
-                    morphSVG: '#svgB path',
-                    scaleY: 0,
-                    ease: 'back.out(1.7)',
-                },
-                '-=0.75',
-            )
-            .set('.bounce_bottom', {
-                height: 0,
-                overflow: 'hidden',
-            })
-            .set('#svgA path', {
-                morphSVG: '#svgA path',
-                scaleY: 1,
-                delay: 0.75,
-            });
-    },
-    beforeRouteLeave(to, from, next) {
-        this.leave(next);
-    },
+    // beforeRouteEnter(to, from, next) {
+    // next();
+    // TweenLite.set('#initalShape', {
+    //     morphSVG: '#initalShape',
+    // });
+    // .set('.transition', {
+    //     bottom: 'unset',
+    //     top: 0,
+    // });
+    // .set('.bounce_bottom', {
+    //     height: 'auto',
+    //     overflow: 'hidden',
+    // })
+    // .to('.transition', {
+    //     height: '0vh',
+    //     duration: 1,
+    //     ease: 'power3.out',
+    // })
+    // .to(
+    //     '#svgA path',
+    //     {
+    //         duration: 0.5,
+    //         morphSVG: '#svgB path',
+    //         scaleY: 0,
+    //         ease: 'back.out(1.7)',
+    //     },
+    //     '-=0.75',
+    // )
+    // .set('.bounce_bottom', {
+    //     height: 0,
+    //     overflow: 'hidden',
+    // })
+    // .set('#svgA path', {
+    //     morphSVG: '#svgA path',
+    //     scaleY: 1,
+    //     delay: 0.75,
+    // });
+    // },
+    // beforeRouteLeave(to, from, next) {
+    // this.leave(next);
+    // },
     methods: {
         leave(e) {
-            s.ZP.timeline()
-                .set('.transition', {
-                    bottom: 0,
-                    height: 'auto',
-                    top: 'unset',
-                })
+            let tl = new TimelineLite();
+            tl.set('.transition', {
+                bottom: 0,
+                height: 'auto',
+                top: 'unset',
+            })
                 .set('.bounce_top', {
                     height: 'auto',
                 })
@@ -118,12 +111,12 @@ export default {
                 });
         },
         enter() {
-            s.ZP.timeline()
-                .set('.transition', {
-                    bottom: 'unset',
-                    delay: 0.25,
-                    top: 0,
-                })
+            let tl = new TimelineLite();
+            tl.set('.transition', {
+                bottom: 'unset',
+                delay: 0.25,
+                top: 0,
+            })
                 .set('.bounce_bottom', {
                     height: 'auto',
                     overflow: 'hidden',

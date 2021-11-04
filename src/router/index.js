@@ -3,33 +3,39 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 import Home from '../views/Home.vue'
 import Index from '../views/index.vue'
+import App from '../App.vue'
 const routes = [
     {
         path: '/',
-        name: 'Index',
-        component: Index
-    },
-    {
-        path: '/profile',
-        name: 'Profile',
-        component: Home,
-        meta: { transition: 'slide-left' },
-    },
-    {
-        path: '/work',
-        name: 'Work',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: Home
-    },
-    {
-        path: '/contact',
-        name: 'Contact',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: Home
+        name: 'App',
+        component: App,
+        children: [
+            {
+                path: 'index',
+                name: 'Index',
+                component: Index
+            },
+            {
+                path: 'profile',
+                name: 'Profile',
+                component: Home
+            },
+            {
+                path: 'work',
+                name: 'Work',
+                // route level code-splitting
+                // this generates a separate chunk (about.[hash].js) for this route
+                // which is lazy-loaded when the route is visited.
+                component: Home
+            },
+            {
+                path: 'contact',
+                name: 'Contact',
+                // route level code-splitting
+                // this generates a separate chunk (about.[hash].js) for this route
+                // which is lazy-loaded when the route is visited.
+                component: Home
+            }]
     }
 ]
 
