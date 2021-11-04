@@ -1,5 +1,5 @@
-const path = require('path')
-const webpack = require('webpack')
+const path = require('path');
+const webpack = require('webpack');
 module.exports = {
     // 部署应用包时的基本 URL,用法和 webpack 本身的 output.publicPath 一致
     publicPath: './',
@@ -34,19 +34,18 @@ module.exports = {
     // webpack-dev-server 相关配置
     devServer: {
         open: true,
-        host: 'localhost',
+        host: 'fex.fang.com',
         port: 9001,
-        https: false,
         hotOnly: false,
         // http 代理配置
-        proxy: {
-            '/api': {
-                target: 'http://127.0.0.1:3000/api',
-                changeOrigin: true,
-                pathRewrite: {
-                    '^/api': ''
-                }
-            }
-        },
+        // proxy: {
+        //     '/api': {
+        //         target: 'http://127.0.0.1:3000/api',
+        //         changeOrigin: true,
+        //         pathRewrite: {
+        //             '^/api': ''
+        //         }
+        //     }
+        // },
     }
-}
+};
