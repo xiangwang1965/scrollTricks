@@ -5,9 +5,9 @@
             <button class="navbar-toggler" type="button">
                 <span class="icon-menu"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div id="navbarSupportedContent" class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item mx-4" :class="{ active: item.active }" v-for="item in tabList" @click="go(`${item.name}`)">
+                    <li v-for="item in tabList" class="nav-item mx-4" :class="{ active: item.active }" @click="go(`${item.name}`)">
                         <a class="nav-link px-2">{{ item.name }}</a>
                     </li>
                 </ul>
@@ -17,8 +17,8 @@
             <div class="transition__overlay">
                 <div class="bounce_top">
                     <svg
-                        version="1.1"
                         id="shapeContainer"
+                        version="1.1"
                         xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink"
                         x="0px"
@@ -47,10 +47,10 @@
                     </svg>
                 </div>
                 <div class="bounce_bottom">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 390" preserveAspectRatio="none" id="svgA">
+                    <svg id="svgA" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 390" preserveAspectRatio="none">
                         <path d="M1200,260S1017.2,390,600,390,0,260,0,260V0H1200Z" class="transitionPath"></path>
                     </svg>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 260" preserveAspectRatio="none" id="svgB" style="display: none">
+                    <svg id="svgB" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 260" preserveAspectRatio="none" style="display: none">
                         <path d="M1200,260S1017.2,130,600,130,0,260,0,260V0H1200Z" class="transitionPath"></path>
                     </svg>
                 </div>
@@ -58,20 +58,7 @@
         </div>
     </div>
 </template>
-<style scoped>
-.slide-down-enter-active,
-.slide-down-leave-active {
-    transition: all 500ms;
-    position: absolute;
-}
-.slide-down-enter {
-    opacity: 0;
-    transform: translate3d(0, 100%, 0);
-}
-.slide-down-leave-active {
-    opacity: 0;
-    transform: translate3d(0, -100%, 0);
-}
+<style>
 .transition {
     bottom: 0;
     height: 0;
@@ -129,7 +116,6 @@
 }
 </style>
 <script>
-import { TimelineLite } from 'gsap';
 export default {
     name: 'Nav',
     data() {
@@ -154,35 +140,37 @@ export default {
         };
     },
     watch: {
-        $route(n, o) {
-            this.tabList.forEach((item) => {
-                if (item.name === n.name) {
-                    item.active = true;
-                } else {
-                    item.active = false;
-                }
-            });
-            // if (this.isMenuOpen) {
-            //     (this.isMenuOpen = !1),
-            //         document.querySelector('.navbar').classList.remove('isOpen'),
-            //         gsap.set('.navbar__menu  .navbar__menu-link', {
-            //             opacity: 1,
-            //         }),
-            //         gsap.set('.navbar__menu', {
-            //             height: 0,
-            //         });
-            //     const e = document.body.style;
-            //     e.removeProperty('overflow'),
-            //         e.removeProperty('position'),
-            //         e.removeProperty('top'),
-            //         e.removeProperty('width'),
-            //         window.scrollTo(0, this.scrollPosition);
-            // }
+        $route: {
+            handler(n, o) {
+                this.tabList.forEach((item) => {
+                    if (item.name === n.name) {
+                        item.active = true;
+                    } else {
+                        item.active = false;
+                    }
+                });
+                // if (this.isMenuOpen) {
+                //     (this.isMenuOpen = !1),
+                //         document.querySelector('.navbar').classList.remove('isOpen'),
+                //         gsap.set('.navbar__menu  .navbar__menu-link', {
+                //             opacity: 1,
+                //         }),
+                //         gsap.set('.navbar__menu', {
+                //             height: 0,
+                //         });
+                //     const e = document.body.style;
+                //     e.removeProperty('overflow'),
+                //         e.removeProperty('position'),
+                //         e.removeProperty('top'),
+                //         e.removeProperty('width'),
+                //         window.scrollTo(0, this.scrollPosition);
+                // }
+            },
+            deep: true,
         },
     },
     mounted() {
-        this.tl = new TimelineLite();
-        this.tl.set('.rel-nav', {
+        TweenMax.set('.rel-nav', {
             opacity: 1,
         });
         this.tabList.forEach((item) => {
@@ -197,7 +185,7 @@ export default {
     },
     methods: {
         go(name) {
-            this.$router.push({ name });
+            this.$router.push({ name: name });
         },
         toggleMenu: function () {
             const e = this;
@@ -224,7 +212,7 @@ export default {
                             stagger: 0.05,
                         }),
                         (this.scrollPosition = window.pageYOffset);
-                    var t = document.body.style;
+                    const t = document.body.style;
                     (t.overflow = 'hidden'), (t.position = 'fixed'), (t.top = -window.pageYOffset + 'px'), (t.width = '100%');
                 } else {
                     this.tl
@@ -251,7 +239,7 @@ export default {
                                 },
                             },
                         );
-                    var i = document.body.style;
+                    const i = document.body.style;
                     i.removeProperty('overflow'),
                         i.removeProperty('position'),
                         i.removeProperty('top'),
@@ -280,7 +268,7 @@ export default {
                   }));
         },
         scrollListen: function () {
-            var e = new TimelineLite();
+            const e = new TimelineLite();
             this.scrollPostion < window.scrollY && window.scrollY > 0
                 ? this.isMobile || this.isTablet
                     ? this.isMenuOpen ||

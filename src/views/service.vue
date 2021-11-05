@@ -54,16 +54,16 @@ export default {
         return {};
     },
     mounted() {
-        this.showHead();
-        setTimeout(() => {
-            this.appearItems();
-        }, 250);
+        // this.showHead();
+        // setTimeout(() => {
+        //     this.appearItems();
+        // }, 250);
     },
     unmounted() {
-        this.appearHeadTitle.kill();
-        this.batchScroll.forEach((e) => {
-            return e.kill();
-        });
+        // this.appearHeadTitle.kill();
+        // this.batchScroll.forEach((e) => {
+        //     return e.kill();
+        // });
     },
     methods: {
         showHead() {
@@ -112,31 +112,31 @@ export default {
                 yPercent: 150,
             });
             const tl = new TimelineLite();
-            this.batchScroll = h.i.batch('.service-list li', {
-                onEnter(e) {
-                    e.forEach((e) => {
-                        tl.to(e.querySelector('.service-list .title'), 1.0, {
-                            opacity: 1,
-                            duration: 1,
-                            ease: 'power4.out',
-                            delay: 0.5,
-                            onStart: function () {
-                                e.classList.add('show');
-                            },
-                        });
-                        tl.to(e.querySelectorAll('.service-list .text'), 0.5, {
-                            opacity: 1,
-                            yPercent: 0,
-                            stagger: 0.1,
-                            delay: 0.5,
-                            duration: 1,
-                            ease: 'power4.out',
-                        });
-                    });
-                },
-                start: 'top 70%',
-                once: !0,
-            });
+            // this.batchScroll = h.i.batch('.service-list li', {
+            //     onEnter(e) {
+            //         e.forEach((e) => {
+            //             tl.to(e.querySelector('.service-list .title'), 1.0, {
+            //                 opacity: 1,
+            //                 duration: 1,
+            //                 ease: 'power4.out',
+            //                 delay: 0.5,
+            //                 onStart: function () {
+            //                     e.classList.add('show');
+            //                 },
+            //             });
+            //             tl.to(e.querySelectorAll('.service-list .text'), 0.5, {
+            //                 opacity: 1,
+            //                 yPercent: 0,
+            //                 stagger: 0.1,
+            //                 delay: 0.5,
+            //                 duration: 1,
+            //                 ease: 'power4.out',
+            //             });
+            //         });
+            //     },
+            //     start: 'top 70%',
+            //     once: !0,
+            // });
         },
     },
 };
