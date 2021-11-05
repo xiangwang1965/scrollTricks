@@ -1,12 +1,13 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-Vue.use(VueRouter)
-import Home from '../views/Home.vue'
-import Index from '../views/index.vue'
-import App from '../App.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+Vue.use(VueRouter);
+import Home from '../views/Home.vue';
+import Index from '../views/index.vue';
+import App from '../App.vue';
 const routes = [
     {
         path: '/',
+        redirect: '/index',
         name: 'App',
         component: App,
         children: [
@@ -37,7 +38,7 @@ const routes = [
                 component: Home
             }]
     }
-]
+];
 
 const router = new VueRouter({
     mode: 'history',
@@ -87,6 +88,6 @@ const router = new VueRouter({
         //         })
         //     }
     }
-})
+});
 
-export default router
+export default router;
