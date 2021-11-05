@@ -32,54 +32,7 @@
                 </div>
             </div>
         </div>
-
-        <div class="item">
-            <div class="row introduce">
-                <!-- <div class="col-md-8"> -->
-                <div>
-                    <section class="services">
-                        <div class="build">
-                            <div class="title">Services</div>
-                            <div class="service-content">We do everything you need to build, launch, optimize and grow your business.</div>
-                        </div>
-                        <div class="service-list">
-                            <ul>
-                                <li>
-                                    <div class="title">
-                                        <div>DESIGN</div>
-                                        <div class="index">01</div>
-                                    </div>
-                                    <div class="text">
-                                        We move fast, we break boundaries. The creative game goes for operations, marketing, communications, design, and
-                                        storytelling. We carefully analyse your needs, and provide expert, transparent advise.
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="title">
-                                        <div>DESIGN</div>
-                                        <div class="index">02</div>
-                                    </div>
-                                    <div class="text">
-                                        We move fast, we break boundaries. The creative game goes for operations, marketing, communications, design, and
-                                        storytelling. We carefully analyse your needs, and provide expert, transparent advise.
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="title">
-                                        <div>DESIGN</div>
-                                        <div class="index">03</div>
-                                    </div>
-                                    <div class="text">
-                                        We move fast, we break boundaries. The creative game goes for operations, marketing, communications, design, and
-                                        storytelling. We carefully analyse your needs, and provide expert, transparent advise.
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </section>
-                </div>
-            </div>
-        </div>
+        <serviceTpl></serviceTpl>
     </div>
 </template>
 <style scoped>
@@ -163,8 +116,13 @@
 }
 </style>
 <script>
+import serviceTpl from './service';
 export default {
     name: 'Profile',
+    components: {
+        serviceTpl,
+    },
+
     data() {
         return {};
     },
