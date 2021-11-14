@@ -27,7 +27,7 @@ import mix from '@/components/mixin';
 import navmix from '@/components/navmix';
 
 export default {
-    name: 'Main',
+    name: 'Main1',
     components: {
         Profile,
         Work,

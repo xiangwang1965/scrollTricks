@@ -1,69 +1,40 @@
 export default {
     beforeRouteEnter (to, from, next) {
         next();
-        // TweenMax.set('#initalShape', {
-        //     visibility: 'visible'
-        // });
-        // const Timeline = new TimelineMax({ paused: false });
-        // TweenMax.set('.transition', {
-        //     bottom: 'unset',
-        //     top: 0
-        // });
-        // TweenMax.set('.bounce_bottom', {
-        //     height: 'auto',
-        //     overflow: 'hidden'
-        // });
-        // Timeline.to('.transition', 0.5, {
-        //     height: '0vh',
-        //     duration: 1,
-        //     ease: 'power3.out'
-        // }).to('#svgA path', 0.4, {
-        //     duration: .5,
-        //     morphSVG: '#svgB path',
-        //     scaleY: 0,
-        //     ease: 'back.out(1.7)'
-        // }, '-=0.75');
-        // TweenMax.set('.bounce_bottom', {
-        //     height: 0,
-        //     overflow: 'hidden'
-        // });
-        // TweenMax.set('#svgA path', {
-        //     visibility: 'visible',
-        //     scaleY: 1,
-        //     delay: .75
-        // });
-        const Timeline = new TimelineMax({ paused: false });
-        Timeline.set('.transition', {
-            bottom: 'unset',
-            delay: .25,
+        const Timeline = new TimelineMax({ delay: 0.1 });
+        TweenMax.set('svg', {
+            visibility: 'visible'
+        })
+        Timeline.set(".transition", {
+            bottom: "unset",
             top: 0
-        }).set('.bounce_bottom', {
-            height: 'auto',
-            overflow: 'hidden'
-        }).to('.transition', 0.3, {
-            height: '0vh',
+        }).set(".bounce_bottom", {
+            height: "auto",
+            overflow: "hidden"
+        }).to(".transition", 0.4, {
+            height: "0vh",
             duration: 1,
-            ease: 'power3.out'
-        }).to('#svgA path', 0.3, {
+            ease: "power3.out"
+        }).to("#svgA path", 0.4, {
             duration: .5,
-            morphSVG: '#svgB path',
+            morphSVG: "#svgB path",
             scaleY: 0,
-            ease: 'back.out(1.7)'
-        }, '-=0.75').set('.bounce_bottom', {
+            ease: "back.out(1.7)"
+        }, "-=0.75").set(".bounce_bottom", {
             height: 0,
-            overflow: 'hidden'
-        }).set('#svgA path', {
-            morphSVG: '#svgA path',
+            overflow: "hidden"
+        }).set("#svgA path", {
+            morphSVG: "#svgA path",
             scaleY: 1,
             delay: .75
-        });
+        })
+
     },
     beforeRouteLeave (to, from, next) {
-        // next();
         this.leave(next);
     },
     methods: {
-        leave: function (e) {
+        leave (e) {
             const Timeline = new TimelineMax({
                 delay: 0.1,
                 paused: false,
@@ -99,35 +70,6 @@ export default {
                 overflow: 'hidden'
             });
 
-        },
-        enter () {
-            const Timeline = new TimelineMax({ paused: false });
-            Timeline.set('.transition', {
-                bottom: 'unset',
-                delay: .25,
-                top: 0
-            }).set('.bounce_bottom', {
-                height: 'auto',
-                overflow: 'hidden'
-            }).to('.transition', 0.3, {
-                height: '0vh',
-                duration: 1,
-                ease: 'power3.out'
-            }).to('#svgA path', 0.3, {
-                duration: .5,
-                morphSVG: '#svgB path',
-                scaleY: 0,
-                ease: 'back.out(1.7)'
-            }, '-=0.75');
-            TweenMax.set('.bounce_bottom', {
-                height: 0,
-                overflow: 'hidden'
-            });
-            TweenMax.set('#svgA path', {
-                morphSVG: '#svgA path',
-                scaleY: 1,
-                delay: .75
-            });
         }
     }
 };

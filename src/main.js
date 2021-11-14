@@ -6,6 +6,7 @@ import $ from 'jquery';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min';
 import './assets/css/style.css';
+import BScroll from '@better-scroll/core'
 Vue.config.productionTip = false;
 new Vue({
     router,

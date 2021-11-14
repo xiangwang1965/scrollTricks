@@ -7,10 +7,14 @@
         "build": "vue-cli-service build"
     },
     "dependencies": {
+        "@better-scroll/core": "^2.4.2",
         "@popperjs/core": "^2.10.2",
+        "@terwanerik/scrolltrigger": "^1.0.5",
+        "better-scroll": "^2.4.2",
         "bootstrap": "4.x",
         "core-js": "^3.6.5",
         "gsap": "^3.8.0",
+        "http": "^0.0.1-security",
         "jquery": "^3.6.0",
         "popper.js": "^1.16.1",
         "vue": "^2.6.11",

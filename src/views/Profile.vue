@@ -1,8 +1,7 @@
 <template>
-    <div id="profile" class="profile">
+    <div id="profile" class="profile page">
         <div class="item">
             <div class="row introduce">
-                <!-- <div class="col-md-8"> -->
                 <div>
                     <section class="website flex">
                         <div class="build">
@@ -124,88 +123,98 @@ export default {
     },
 
     data() {
-        return {};
+        return { trigger: null };
     },
     mounted() {
-        // const $quote = $('.title');
-        // const mySplitText = new SplitText($quote, { type: 'words' });
-        const splitTextTimeline = new TimelineLite();
-
-        // TweenLite.set($quote, { perspective: 400 });
-        TweenLite.set($('.highlighted__overlay', '.highlighted__line'), {
+        const splitTextTimeline = new TimelineMax();
+        splitTextTimeline.set(['.highlighted__overlay', '.highlighted__line'], {
             autoAlpha: 0,
         });
-        const t = new SplitText($('.title'), {
+        const t = new SplitText('#profile .title', {
             type: 'chars, words',
             charsClass: 'chars',
         });
-        const i = new SplitText($('.content'), {
+        const i = new SplitText($('#profile .content'), {
             type: 'lines',
         });
-        splitTextTimeline.staggerFrom(t.chars, 1.0, {
-            opacity: 0,
-            y: 400,
-            scaleY: 3,
-            duration: 1,
-            stagger: 0.01,
-            delay: 0.5,
-            ease: 'power4.inOut',
-        });
-        splitTextTimeline.from($('.ball'), 1.0, {
-            autoAlpha: 0,
-            duration: 0.5,
-            ease: 'power4.inOut',
-        });
-        TweenLite.set($('.highlighted__overlay'), {
-            autoAlpha: 1,
-            width: '100%',
-        });
-        TweenLite.set($('.highlighted__line'), {
-            autoAlpha: 1,
-        });
-        splitTextTimeline.to($('.highlighted__overlay'), 1.0, {
-            width: 0,
-            duration: 1,
-            ease: 'power4.out',
-            onComplete: function () {
-                t.revert();
-            },
-        });
-        splitTextTimeline.from(
-            i.lines,
-            1.0,
-            {
-                autoAlpha: 0,
-                yPercent: 125,
+        splitTextTimeline
+            .staggerFrom(t.chars, 0.8, {
+                opacity: 0,
+                y: 400,
+                scaleY: 3,
                 duration: 1,
-                stagger: 0.05,
+                stagger: 0.01,
+                delay: 0.5,
+                ease: 'power4.inOut',
+            })
+            .from(
+                '.ball',
+                0.8,
+                {
+                    autoAlpha: 0,
+                    duration: 0.5,
+                    ease: 'power4.inOut',
+                },
+                '<',
+            )
+            .set('.highlighted__overlay', {
+                autoAlpha: 1,
+                width: '100%',
+            })
+            .set(
+                '.highlighted__line',
+                {
+                    autoAlpha: 1,
+                },
+                '<',
+            )
+            .to('.highlighted__overlay', 2.0, {
+                width: 0,
+                duration: 2,
                 ease: 'power4.out',
                 onComplete: function () {
-                    i.revert();
+                    t.revert();
                 },
-            },
-            '<',
-        );
-        splitTextTimeline.from(
-            $('.introduce-content .text'),
-            0.5,
-            {
-                autoAlpha: 0,
-                duration: 5 / 30,
-                ease: 'power1.inOut',
-            },
-            '-=0.8',
-        );
-        splitTextTimeline.from(
-            $('.introduce-content .line'),
-            0.8,
-            {
-                width: 0,
-                duration: 10 / 30,
-                ease: 'power1.inOut',
-            },
-            '<',
-        );
+            })
+            .from(
+                i.lines,
+                1.0,
+                {
+                    autoAlpha: 0,
+                    yPercent: 125,
+                    duration: 1,
+                    stagger: 0.05,
+                    ease: 'power4.out',
+                    onComplete: function () {
+                        i.revert();
+                    },
+                },
+                '-=.9',
+            )
+            .from(
+                '.button--default .text',
+                1,
+                {
+                    autoAlpha: 0,
+                    duration: 5 / 30,
+                    ease: 'power1.inOut',
+                },
+                '-=0.8',
+            )
+            .from(
+                '.button--default .line',
+                1,
+                {
+                    width: 0,
+                    duration: 10 / 30,
+                    ease: 'power1.inOut',
+                },
+                '<',
+            );
+    },
+    beforeDestroy() {
+        this.trigger.kill();
+        this.trigger = null;
     },
 };
 </script>

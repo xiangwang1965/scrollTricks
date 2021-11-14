@@ -1,5 +1,5 @@
 <template>
-    <div class="contact" id="contact">
+    <div class="contact page" id="contact">
         <section class="concept">
             <div class="title">
                 FROM CONCEPT <br />
@@ -41,106 +41,50 @@
     </div>
 </template>
 <script>
-import { TimelineLite } from 'gsap';
+import ScrollTrigger from '@terwanerik/scrolltrigger';
+
 export default {
     name: 'Contact',
     data() {
-        return {};
+        return { trigger: null };
     },
     methods: {
-        scrollTop() {
-            l().polyfill(),
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth',
-                });
-        },
         appearContent() {
             let that = this;
-            let t = new n.C('.contact h2', {
-                type: 'lines, chars, words',
+            let t = new SplitText('.concept .title', {
+                type: 'chars, words',
             });
-            let i = new n.C('.contact .contact__info_text', {
+            let i = new SplitText('.concept .text', {
                 type: 'lines',
             });
-            this.appearHeadTitle = new TimelineLite({
-                scrollTrigger: {
-                    trigger: '.contact',
-                    start: 'top 60%',
-                },
-            });
-            this.appearHeadTitle
-                .set('.contact__footer-link', {
-                    transformOrigin: '0% 100%',
-                })
-                .from(t.chars, {
-                    autoAlpha: 0,
-                    yPercent: 200,
-                    scaleY: 3,
-                    duration: 1,
-                    stagger: 0.015,
-                    ease: 'power4.inOut',
-                    onComplete: function () {
-                        t.revert();
-                    },
-                })
-                .from(i.lines, {
-                    autoAlpha: 0,
-                    yPercent: 150,
-                    duration: 1,
-                    stagger: 0.02,
-                    ease: 'power4.out',
-                    onComplete: function () {
-                        i.revert();
-                    },
-                })
-                .from(
-                    '.contact__info a, .contact__info p, .contact__info_link',
-                    {
-                        autoAlpha: 0,
-                        yPercent: 150,
-                        duration: 1,
-                        stagger: 0.02,
-                        ease: 'power4.out',
-                    },
-                    '<',
-                )
-                .from('.contact__footer-logo', {
-                    autoAlpha: 0,
-                    duration: 1,
-                    ease: 'power4.out',
-                })
-                .from(
-                    '.contact__footer-link',
-                    {
-                        autoAlpha: 0,
-                        scale: 0,
-                        duration: 1,
-                        stagger: 0.02,
-                        clearProps: !0,
-                        ease: 'power4.out',
-                    },
-                    '<',
-                ),
-                setTimeout(() => {
-                    that.appearHeadTitle.scrollTrigger.refresh();
-                }, 1e3);
-        },
-        openMap() {
-            // -1 != navigator.platform.indexOf('iPhone') || -1 != navigator.platform.indexOf('iPad') || -1 != navigator.platform.indexOf('iPod')
-            //     ? window.open(
-            //           'maps://maps.apple.com/?address=29%20Rue%20Royale,%2069001%20Lyon,%20France&ll=45.770244,4.837288&q=29%20Rue%20Royale&_ext=EiYpcY46KwTiRkAxRqGyB8pSE0A572NghyrjRkBBOAlYBfpfE0BQBA%3D%3D',
-            //       )
-            //     : window.open(
-            //           'https://www.google.fr/maps/place/29+Rue+Royale,+69001+Lyon/@45.7702697,4.8352369,17z/data=!3m1!4b1!4m5!3m4!1s0x47f4eafbbd3e9b5b:0x5cccb8be26471915!8m2!3d45.770266!4d4.8374256',
-            //       );
+            this.appearHeadTitle = new TimelineMax()
+                .from(t.chars, 0.8, { opacity: 0, scale: 0, y: 80, rotationX: 180, transformOrigin: '0% 50% -50', ease: Back.easeOut }, '-=0.8')
+                .from(i.lines, 0.5, { x: 100, autoAlpha: 0 }, 0.2);
         },
     },
     mounted: function () {
-        // this.appearContent();
+        this.trigger = new ScrollTrigger();
+
+        this.trigger.add('#contact', {
+            toggle: {
+                callback: {
+                    in: () => {
+                        this.appearContent();
+                    },
+                    out: () => {
+                        // same as the data-scroll-hideCallback
+                        console.log('Invisible');
+                    },
+                },
+            },
+        });
     },
     unmounted() {
         this.appearHeadTitle.kill();
+    },
+    beforeDestroy() {
+        this.trigger.kill();
+        this.trigger = null;
     },
 };
 </script>

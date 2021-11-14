@@ -48,18 +48,36 @@
     </div>
 </template>
 <script>
+import ScrollTrigger from '@terwanerik/scrolltrigger';
 export default {
     name: 'Service',
     data() {
-        return {};
+        return { trigger: null };
     },
     mounted() {
-        // this.showHead();
-        // setTimeout(() => {
-        //     this.appearItems();
-        // }, 250);
+        this.trigger = new ScrollTrigger();
+        this.trigger.add('#services', {
+            toggle: {
+                callback: {
+                    in: () => {
+                        this.showHead();
+                        setTimeout(() => {
+                            this.appearItems();
+                        }, 250);
+                    },
+                    out: () => {
+                        // same as the data-scroll-hideCallback
+                        console.log('Invisible');
+                    },
+                },
+            },
+        });
     },
-    unmounted() {
+    beforeDestroy() {
+        this.trigger.kill();
+        this.trigger = null;
+    },
+    destroyed() {
         // this.appearHeadTitle.kill();
         // this.batchScroll.forEach((e) => {
         //     return e.kill();
@@ -67,41 +85,41 @@ export default {
     },
     methods: {
         showHead() {
-            const t = new SplitText('#services .title', {
+            const t = new SplitText('#services .build .title', {
                 type: 'lines,chars, words',
             });
-            const i = new SplitText('#services .service-content', {
+            const i = new SplitText('#services .build .service-content', {
                 type: 'lines',
             });
-            this.appearHeadTitle = new TimelineLite({
+            this.appearHeadTitle = new TimelineMax({
                 scrollTrigger: {
-                    trigger: '#services .build',
+                    trigger: '#services .build .title',
                     start: 'top 60%',
                 },
-            });
-            this.appearHeadTitle.from(t.chars, 0.5, {
-                autoAlpha: 0,
-                yPercent: 200,
-                scaleY: 3,
-                duration: 1,
-                stagger: 0.015,
-                ease: 'power4.inOut',
-            });
-            this.appearHeadTitle.from(
-                i.lines,
-                0.5,
-                {
+            })
+                .from(t.chars, 0.5, {
                     autoAlpha: 0,
-                    yPercent: 150,
-                    duration: 20 / 30,
-                    stagger: 0.05,
-                    ease: 'power2.out',
-                },
-                '-=0.5',
-            );
-            setTimeout(() => {
-                this.appearHeadTitle.scrollTrigger.refresh();
-            }, 2e3);
+                    yPercent: 200,
+                    scaleY: 3,
+                    duration: 1,
+                    stagger: 0.015,
+                    ease: 'power4.inOut',
+                })
+                .from(
+                    i.lines,
+                    0.5,
+                    {
+                        autoAlpha: 0,
+                        yPercent: 150,
+                        duration: 20 / 30,
+                        stagger: 0.05,
+                        ease: 'power2.out',
+                    },
+                    '-=0.5',
+                );
+            // setTimeout(() => {
+            //     this.appearHeadTitle.scrollTrigger.refresh();
+            // }, 2e3);
         },
         appearItems() {
             new SplitText('.service-list .title', {
@@ -111,32 +129,31 @@ export default {
                 opacity: 0,
                 yPercent: 150,
             });
-            const tl = new TimelineLite();
-            // this.batchScroll = h.i.batch('.service-list li', {
-            //     onEnter(e) {
-            //         e.forEach((e) => {
-            //             tl.to(e.querySelector('.service-list .title'), 1.0, {
-            //                 opacity: 1,
-            //                 duration: 1,
-            //                 ease: 'power4.out',
-            //                 delay: 0.5,
-            //                 onStart: function () {
-            //                     e.classList.add('show');
-            //                 },
-            //             });
-            //             tl.to(e.querySelectorAll('.service-list .text'), 0.5, {
-            //                 opacity: 1,
-            //                 yPercent: 0,
-            //                 stagger: 0.1,
-            //                 delay: 0.5,
-            //                 duration: 1,
-            //                 ease: 'power4.out',
-            //             });
-            //         });
-            //     },
-            //     start: 'top 70%',
-            //     once: !0,
-            // });
+
+            new TimelineMax({
+                scrollTrigger: {
+                    trigger: '.service-list li',
+                    start: 'top 70%',
+                    once: true,
+                },
+            })
+                .to('.service-list li .title', 1.0, {
+                    opacity: 1,
+                    duration: 1,
+                    ease: 'power4.out',
+                    delay: 0.5,
+                    onStart: function () {
+                        // e.classList.add('show');
+                    },
+                })
+                .to('.service-list li .text', 0.5, {
+                    opacity: 1,
+                    yPercent: 0,
+                    stagger: 0.1,
+                    delay: 0.5,
+                    duration: 1,
+                    ease: 'power4.out',
+                });
         },
     },
 };
