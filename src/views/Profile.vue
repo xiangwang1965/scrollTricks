@@ -212,9 +212,5 @@ export default {
                 '<',
             );
     },
-    beforeDestroy() {
-        this.trigger.kill();
-        this.trigger = null;
-    },
 };
 </script>
