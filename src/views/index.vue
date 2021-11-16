@@ -1,12 +1,12 @@
 <template>
     <div id="indexBox"></div>
 </template>
-<style scoped>
+<style>
 .animateBall {
     width: 100px;
     height: 100px;
     background: red;
-    position: absolute;
+    position: relative;
     border-radius: 10px;
     transform: rotate(30deg);
 }

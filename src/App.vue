@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <nav class="navbar fixed-top navbar-expand-lg navbar-light rel-nav">
+    <div id="app">
+        <!-- <nav class="navbar fixed-top navbar-expand-lg navbar-light rel-nav">
             <a class="navbar-brand navbar-brand1" href="index.html">logo</a>
             <button
                 class="navbar-toggler"
@@ -63,7 +63,7 @@
                     </svg>
                 </div>
             </div>
-        </div>
+        </div> -->
         <router-view></router-view>
     </div>
 </template>

@@ -5,7 +5,7 @@ import Home from '@/views/Home.vue';
 import Home1 from '@/views/Home1.vue';
 import Home2 from '@/views/Home2.vue';
 
-import Index from '../views/index.vue';;
+import Index from '@/views/Index.vue';
 
 const originalPush = VueRouter.prototype.push;
 VueRouter.prototype.push = function push (location) {
@@ -14,7 +14,7 @@ VueRouter.prototype.push = function push (location) {
 const routes = [
 
     {
-        path: '/',
+        path: '/index',
         name: 'Index',
         component: Index,
         active: false
@@ -43,8 +43,8 @@ const routes = [
 ];
 
 const router = new VueRouter({
+    base: '',
     mode: 'history',
-    base: __dirname,
     routes
 });
 
