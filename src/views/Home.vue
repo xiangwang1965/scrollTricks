@@ -1,12 +1,9 @@
 <template>
     <div>
-        <!-- <div class="wrapper-pro">
-        <div class="con-main"> -->
         <Profile> </Profile>
         <Work></Work>
         <Contact></Contact>
     </div>
-    <!-- </div> -->
 </template>
 <style>
 .wrapper-pro {

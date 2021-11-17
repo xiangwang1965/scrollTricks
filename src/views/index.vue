@@ -1,19 +1,49 @@
 <template>
-    <div id="indexBox"></div>
+    <section class="fixed-top logo" id="indexBox">
+        <div class="index-content">
+            <div class="index-txt">
+                <h3>bento works</h3>
+                <div class="txt">Simplifying digital complexity</div>
+            </div>
+        </div>
+        <div id="box1"></div>
+        <div id="box2"></div>
+        <div id="box3"></div>
+    </section>
 </template>
 <style>
-.animateBall {
-    width: 100px;
-    height: 100px;
-    background: red;
-    position: relative;
-    border-radius: 10px;
-    transform: rotate(30deg);
-}
-#indexBox {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
+@media screen and (min-width: 768px) {
+    #box1 {
+        position: absolute;
+        left: 1097px;
+        top: -38px;
+        background: #e1cac7;
+        transform: rotate(-27.81deg);
+        width: 194px;
+        height: 193px;
+        border-radius: 18px;
+    }
+    #box2 {
+        position: absolute;
+        left: 103px;
+        top: 237px;
+        background: #8cbea3;
+        transform: rotate(39.49deg);
+        height: 545px;
+        width: 193px;
+        border-radius: 20px; /* Vector */
+    }
+
+    #box3 {
+        position: absolute;
+        left: 1784.48px;
+        top: 509px;
+        background: #cb654f;
+        transform: rotate(29.25deg);
+        width: 308px;
+        height: 308px;
+        border-radius: 34px;
+    }
 }
 </style>
 <script>
@@ -22,7 +52,7 @@ export default {
     data() {
         return {
             rafId: '',
-            list: [`rgb(228,216,214)`, `rgb(217,165,164)`, `rgb(185,210,197)`],
+            list: [`rgb(225, 202, 199)`, `rgb(203, 101, 79);`, `rgb(140, 190, 163);`],
             maxX: '0',
             maxY: '0',
             box: null,

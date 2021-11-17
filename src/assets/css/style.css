@@ -57,7 +57,7 @@ table {
 }
 
 img {
-    vertical-align: top;
+    max-width: 100%;
 }
 
 /* 清楚图片底部三像素 */
@@ -89,12 +89,15 @@ h6 {
 
 html,
 body {
-    font-family: '微软雅黑', 'Helvetica';
+    background: #fff;
 }
 
-body {
-    background: #fff;
-    overflow: hidden;
+#app {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #fff;
+    color: #222;
+    font-family: Apercu, sans-serif;
 }
 
 .clearfix:after {
