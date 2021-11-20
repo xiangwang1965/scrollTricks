@@ -25,6 +25,17 @@
         <router-view></router-view>
     </div>
 </template>
+<style scoped>
+::v-deep.nav-link {
+    font-family: Apercu-Bold;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 31px;
+    text-align: center;
+    color: #000000;
+}
+</style>
 <script>
 import vtransition from '@/views/transition.vue';
 export default {

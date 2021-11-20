@@ -1,24 +1,29 @@
 <template>
-    <section id="work" class="horizontal-section" style="height: 200vh">
+    <div id="work" class="horizontal-section" style="height: 200vh">
         <div class="horizontal-trigger"></div>
         <div class="horizontal-sticky">
-            <div id="imgBox" class="container is--sticky">
+            <div id="imgBox" class="container1 is--sticky">
+                <div class="sticky_top">
+                    <div class="row sticky_title">Case Studies</div>
+                    <div class="row sticky_top-line"></div>
+                </div>
                 <div class="wrapper w-dyn-list">
-                    <div class="list w-dyn-items">
-                        <div class="horizontal-item w-dyn-item" v-for="item in list">
-                            <div class="card w-inline-block">
-                                <div class="card_top">
-                                    <div class="index">{{ item }}</div>
-                                    <div class="text">Hello</div>
+                    <div id="list" class="list w-dyn-items">
+                        <div class="col-4 horizontal-item w-dyn-item" v-for="item in list">
+                            <div class="card w-inline-block" style="width: 555px; height: 661px">
+                                <img src="@/assets/case.jpg" class="card-img-top" alt="..." />
+                                <div class="card-body">
+                                    <div class="card-title">{{ item }}</div>
+                                    <div class="sticky_top-line"></div>
+                                    <div class="card-text">Hello</div>
                                 </div>
-                                <img src="@/assets/case.jpg" class="card_img" alt="..." />
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 </template>
 <style scoped>
 .horizontal-section {
@@ -37,14 +42,13 @@
     height: calc(100% - 100vh);
 }
 
-.container {
+.container1 {
     width: 100%;
-    max-width: 1440px;
     margin-right: auto;
     margin-left: auto;
     padding: 60px 80px;
 }
-.container.is--sticky {
+.container1.is--sticky {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -78,6 +82,7 @@
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
+    flex-direction: column;
     width: 100%;
     padding-bottom: 2.5em;
     -webkit-box-pack: start;
@@ -93,15 +98,17 @@
 .sticky_top-line {
     width: 100%;
     height: 2px;
-    background-color: rgba(92, 49, 255, 0.32);
+    background-color: #000;
 }
 
 .sticky_title {
-    padding-right: 1em;
-    -webkit-box-flex: 0;
-    -webkit-flex: 0 0 auto;
-    -ms-flex: 0 0 auto;
-    flex: 0 0 auto;
+    font-family: Apercu-Bold;
+    font-size: 80px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 99px;
+    letter-spacing: 0em;
+    text-align: left;
     white-space: nowrap;
 }
 
@@ -110,7 +117,6 @@
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    width: 100%;
     -webkit-box-pack: start;
     -webkit-justify-content: flex-start;
     -ms-flex-pack: start;
@@ -119,6 +125,7 @@
     -webkit-align-items: stretch;
     -ms-flex-align: stretch;
     align-items: stretch;
+    max-height: 700px;
 }
 
 .wrapper {
@@ -126,7 +133,6 @@
 }
 
 .horizontal-item {
-    width: 34%;
     padding-right: 20px;
     -webkit-box-flex: 0;
     -webkit-flex: 0 0 auto;
@@ -138,19 +144,12 @@
     display: inline-block;
 }
 ::v-deep.card {
-    width: 100%;
-    padding: 42px 42px 0px;
-    border-style: solid;
-    border-width: 2px;
-    border-color: rgba(92, 49, 255, 0.32);
-    border-radius: 20px;
-    background-color: rgba(92, 49, 255, 0.04);
+    border: none;
 }
 ::v-deep.card img {
-    vertical-align: middle;
     max-width: 100%;
 }
-.card_top {
+.card-body {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -159,10 +158,29 @@
     -webkit-justify-content: space-between;
     -ms-flex-pack: justify;
     justify-content: space-between;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
+    -webkit-box-align: left;
+    -webkit-align-items: left;
+    -ms-flex-align: left;
+    align-items: left;
+    flex-direction: column;
+}
+::v-depp.card-title {
+    font-family: Apercu-Bold;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+.card-text {
+    font-family: Apercu-Bold;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 45px;
+    letter-spacing: 0.025em;
+    text-align: left;
 }
 
 .card_icon {
@@ -204,16 +222,16 @@ export default {
             const scrollContainer = $('#work');
 
             scrollContainer.css({ 'min-height': $('.w-dyn-item').width() * 8 });
-
+            // $('.w-dyn-items').css({ 'min-width': $('.w-dyn-item').width() * 8 });
             this.trigger.add('.horizontal-trigger', {
                 toggle: {
                     callback: {
                         in: () => {
-                            $('.horizontal-sticky').css({ position: 'fixed', zIndex: 1040 });
+                            // $('.horizontal-sticky').css({ position: 'fixed', zIndex: 1040 });
                             window.addEventListener('scroll', that.scrollListen);
                         },
                         out: () => {
-                            $('.horizontal-sticky').css({ position: 'sticky', zIndex: 1040 });
+                            // $('.horizontal-sticky').css({ position: 'sticky', zIndex: 1040 });
                             window.removeEventListener('scroll', that.scrollListen);
                         },
                         scroll: {
@@ -261,10 +279,11 @@ export default {
 
             const list = $('.horizontal-sticky').offset().top;
             console.log(workTop, list);
-            let len = list - Number(window.scrollY);
-            document.querySelector(
-                '.horizontal-sticky',
-            ).style = `transform: translate3d(${len}px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);will-change: transform;transform-style: preserve-3d;position:fixed;z-index:1040`;
+            let len = workTop - list;
+            let itemsList = document.getElementById('list');
+            itemsList.style.willChange = 'transform';
+            itemsList.style.transformStyle = 'preserve-3d';
+            itemsList.style.transform = 'translate3d(' + len + 'px,0,0) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)';
         },
     },
 };

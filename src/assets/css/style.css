@@ -108,12 +108,6 @@ body {
     overflow: hidden;
     clear: both;
 }
-
-.container {
-    width: 80vw;
-    margin: 0 auto;
-}
-
 .navbar-light .navbar-toggler {
     min-width: 20px;
     background: url(../img/hamburgermenu.png) no-repeat center / 100% auto;
@@ -175,10 +169,10 @@ body {
 .introduce .build .title {
     font-family: Apercu-Bold;
     font-style: normal;
-    font-weight: bold;
+    font-weight: 700;
     padding-left: 2rem;
-    font-size: 10rem;
-    line-height: 12rem;
+    font-size: 80px;
+    line-height: 99.54px;
     color: #000000;
 }
 
@@ -196,10 +190,10 @@ body {
 .introduce .services .service-content {
     font-family: Apercu;
     font-style: normal;
-    font-weight: normal;
-    font-size: 2.2rem;
-    line-height: 150%;
-    color: #000000;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #000;
     margin-top: 20px;
 }
 
@@ -217,9 +211,9 @@ body {
 .introduce-content .content {
     font-family: Apercu;
     font-style: normal;
-    font-weight: normal;
-    font-size: 2.2rem;
-    line-height: 150%;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
     color: #000000;
     margin-top: 20px;
 }
@@ -405,7 +399,10 @@ body {
     transform: translateY(-50%);
     background: #e1cac7;
 }
-
+.ml-auto,
+.mx-auto {
+    margin-left: auto !important;
+}
 .logo-bg {
     width: 100vw;
     height: 100vh;
@@ -449,7 +446,8 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    background: #fff;
+    background: transparent;
+    z-index: 3;
 }
 .index-content.active canvas {
     display: none;
@@ -566,6 +564,7 @@ body {
     box-sizing: border-box;
     padding: 18vh 0 0;
     width: 100%;
+    height: 100vh;
     /* border-bottom: 1px solid #e3e3e3; */
     position: relative;
 }

@@ -66,7 +66,6 @@ export default {
                         }, 250);
                     },
                     out: () => {
-                        // same as the data-scroll-hideCallback
                         console.log('Invisible');
                     },
                 },
@@ -94,12 +93,12 @@ export default {
             this.appearHeadTitle = new TimelineMax({
                 scrollTrigger: {
                     trigger: '#services .build .title',
-                    start: 'top 60%',
+                    start: 'top 20%',
                 },
             })
-                .from(t.chars, 0.5, {
+                .from(t.chars, 0.8, {
                     autoAlpha: 0,
-                    yPercent: 200,
+                    yPercent: 0,
                     scaleY: 3,
                     duration: 1,
                     stagger: 0.015,
@@ -117,43 +116,38 @@ export default {
                     },
                     '-=0.5',
                 );
-            // setTimeout(() => {
-            //     this.appearHeadTitle.scrollTrigger.refresh();
-            // }, 2e3);
         },
         appearItems() {
-            new SplitText('.service-list .title', {
-                opacity: 0,
-            });
-            TweenLite.set('.service-list .text', {
-                opacity: 0,
-                yPercent: 150,
-            });
-
-            new TimelineMax({
+            let tl = new TimelineMax({
                 scrollTrigger: {
                     trigger: '.service-list li',
                     start: 'top 70%',
-                    once: true,
                 },
-            })
-                .to('.service-list li .title', 1.0, {
-                    opacity: 1,
-                    duration: 1,
-                    ease: 'power4.out',
-                    delay: 0.5,
-                    onStart: function () {
-                        // e.classList.add('show');
-                    },
-                })
-                .to('.service-list li .text', 0.5, {
-                    opacity: 1,
-                    yPercent: 0,
-                    stagger: 0.1,
-                    delay: 0.5,
-                    duration: 1,
-                    ease: 'power4.out',
-                });
+            });
+            new SplitText('.service-list .title', {
+                opacity: 0,
+            });
+
+            new TweenLite.set('.service-list .text', {
+                opacity: 0,
+                yPercent: 150,
+            });
+            tl.to('.service-list li .title', 1.0, {
+                opacity: 1,
+                duration: 1,
+                ease: 'power4.out',
+                delay: 0.5,
+                onStart: function () {
+                    // e.classList.add('show');
+                },
+            }).to('.service-list li .text', 0.5, {
+                opacity: 1,
+                yPercent: 0,
+                stagger: 0.1,
+                delay: 0.5,
+                duration: 1,
+                ease: 'power4.out',
+            });
         },
     },
 };

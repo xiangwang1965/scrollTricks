@@ -1,34 +1,32 @@
 <template>
-    <div id="profile" class="profile page">
+    <div id="profile" class="profile">
         <div class="item">
             <div class="row introduce">
-                <div>
-                    <section class="website flex">
-                        <div class="build">
-                            <div ref="title" class="title">
-                                We build <br />
-                                <div class="highlighted__container">
-                                    <span class="highlighted__word">website</span>
-                                    <span class="highlighted__overlay"></span>
-                                    <img src="@/assets/img/underline-home.svg" alt="" class="highlighted__line" />
-                                </div>
-                                <br />
-                                and app
+                <section class="website flex">
+                    <div class="col build">
+                        <div ref="title" class="title">
+                            We build <br />
+                            <div class="highlighted__container">
+                                <span class="highlighted__word">website</span>
+                                <span class="highlighted__overlay"></span>
+                                <img src="@/assets/img/underline-home.svg" alt="" class="highlighted__line" />
                             </div>
+                            <br />
+                            and app
                         </div>
-                        <div class="introduce-content">
-                            <div class="ball"></div>
-                            <div class="content">
-                                We move fast, we break boundaries. The creative game goes for operations, marketing, communications, design, and storytelling.
-                                We carefully analyse your needs, and provide expert, transparent advise.
-                            </div>
-                            <a class="button--default">
-                                <span class="text">Contacter bigbump</span>
-                                <span class="line"></span
-                            ></a>
+                    </div>
+                    <div class="col introduce-content">
+                        <div class="ball"></div>
+                        <div class="content">
+                            We move fast, we break boundaries. The creative game goes for operations, marketing, communications, design, and storytelling. We
+                            carefully analyse your needs, and provide expert, transparent advise.
                         </div>
-                    </section>
-                </div>
+                        <a class="button--default">
+                            <span class="text">Contacter we</span>
+                            <span class="line"></span
+                        ></a>
+                    </div>
+                </section>
             </div>
         </div>
         <serviceTpl></serviceTpl>
@@ -134,11 +132,11 @@ export default {
             type: 'chars, words',
             charsClass: 'chars',
         });
-        const i = new SplitText($('#profile .content'), {
+        const i = new SplitText('#profile .content', {
             type: 'lines',
         });
         splitTextTimeline
-            .staggerFrom(t.chars, 0.8, {
+            .from(t.chars, 0.8, {
                 opacity: 0,
                 y: 400,
                 scaleY: 3,
@@ -168,7 +166,7 @@ export default {
                 },
                 '<',
             )
-            .to('.highlighted__overlay', 2.0, {
+            .to('.highlighted__overlay', 1, {
                 width: 0,
                 duration: 2,
                 ease: 'power4.out',

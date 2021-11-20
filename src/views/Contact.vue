@@ -51,18 +51,21 @@ export default {
     methods: {
         appearContent() {
             let that = this;
-            let t = new SplitText('.concept .title', {
-                type: 'chars, words',
-            });
             let i = new SplitText('.concept .text', {
-                type: 'lines',
+                type: 'chars',
             });
-            this.appearHeadTitle = new TimelineMax()
-                .from(t.chars, 0.8, { opacity: 0, scale: 0, y: 80, rotationX: 180, transformOrigin: '0% 50% -50', ease: Back.easeOut }, '-=0.8')
-                .from(i.lines, 0.5, { x: 100, autoAlpha: 0 }, 0.2);
+            this.appearHeadTitle = new TimelineLite();
+
+            this.appearHeadTitle
+                .from('.concept .title', 1.5, {
+                    left: 100,
+                    opacity: 0,
+                })
+                .staggerFrom(i.chars, 0.5, { opacity: 0, rotation: 90, scale: 0, x: 20, y: 60, ease: Back.easeOut }, 0.05);
         },
     },
-    mounted: function () {
+    mounted() {
+        let tl = new TimelineLite();
         this.trigger = new ScrollTrigger();
 
         this.trigger.add('#contact', {
@@ -78,9 +81,6 @@ export default {
                 },
             },
         });
-    },
-    unmounted() {
-        this.appearHeadTitle.kill();
     },
     beforeDestroy() {
         this.trigger.kill();
